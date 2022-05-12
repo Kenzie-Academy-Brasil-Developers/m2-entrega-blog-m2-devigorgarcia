@@ -4,9 +4,61 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/styles/reset.css">
+  <link rel="stylesheet" href="src/styles/style.css">
   <title>m2-entrega-blog-m2</title>
 </head>
 <body>
-  
+  <header id="header">
+    <!-- <div class="header__logo">
+      <img src="src/img/portada_moriarty-19.jpg" alt="" id="header__logo__userImg">
+      <h1 id="header__logo__user">Gatinho Fofo</h1> -->
+    </div>
+    <div class="header__buttons">
+      <button id="header__buttons__login" class="header__button">Login</button>
+      <button id="header__buttons__register" class="header__button">Cadastrar</button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="createPost">
+      <div class="createPost__post">
+        <textarea name="" id="createPost__post__inputText" cols="30" rows="10" placeholder="Comece seu poste incrivel!"></textarea>
+      </div>
+      <button class="createPost__button">+</button>
+    </section>
+    <section class="posts">
+      <!-- <div class="posts__card">
+        <div class="posts__card__imgContainer">
+          <img src="src/img/portada_moriarty-19.jpg" alt="" class="posts__card__img">
+        </div>
+        <div class="posts__card__content">
+          <span class="posts__card__content__nick">GatinhoFofo</span>
+          <p class="posts__card__content__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste officiis facere reiciendis iusto repellat quas voluptatum optio tenetur sapiente tempore? Culpa ea enim a sit id odit quae quidem harum.</p>
+        </div>
+        <div class="posts__card__botoes">
+          <button class="posts__card__botoes__editar">Editar</button>
+          <button class="posts__card__botoes__apagar">Apagar</button>
+          <span class="posts__card__botoes__data">Date</span>
+        </div>
+      </div> -->
+    </section>
+  </main>
+  <!-- <section class="modal">
+    <form action="" class="modal__cadastro">
+      <h1 class="modal__title">Cadastro</h1>
+      <input type="text" name="username" id="modal__username" class="modal__input" placeholder="Nome de usuário">
+      <input type="email" name="email" id="modal__email" class="modal__input" placeholder="Email">
+      <input type="text" name="avatarUrl" id="modal__avatar" class="modal__input" placeholder="Foto de Perfil">
+      <input type="password" name="password" id="moda__password" class="modal__input" placeholder="Senha">
+      <input type="submit" value="Cadastrar" class="modal__submitBtn" id="modal__submitBtn">
+    </form>
+    <form action="" class="modal__login">
+      <h1 class="modal__title">Login</h1>
+      <input type="email" name="email" id="modal__login__email" class="modal__login__input" placeholder="Email">
+      <input type="password" name="password" id="modal__login__password" class="modal__login__input" placeholder="Senha">
+       <input type="submit" id="modal__login__submitBtn" value="Login" class="modal__submitBtn">
+    </form>
+  </section> -->
+  <script type="module" src="src/script.js"></script>
 </body>
 </html>
