@@ -1,4 +1,5 @@
-import DisplayPosts from "../models/DisplayPosts.js";
+import DisplayCreatePost from "../models/DisplayCreatePost.js";
+import EditarPost from "../models/EditarPost.js";
 import Modal from "../models/Modal.js";
 import Posts from "../models/Posts.js";
 
@@ -19,7 +20,7 @@ class Api {
                 return response.json();
             })
             .then((response) => {
-                console.log('Usuario Cadastrado', response)
+                Modal.showLoginModal();
             })
             .catch((err) => {
                 console.log(err, "Erro!")
@@ -64,13 +65,14 @@ class Api {
                 return response.json();
             })
             .then((response) => {
-                Modal.headerLogin(response);
-                DisplayPosts.createPost();
+                if(response.username){
+                    DisplayCreatePost.createPost();
+                    Modal.headerLogin(response);
+                }
             })
             .catch((err) => {
                 console.log('moio', err)
             })
-            .catch((err)=>console.log(err))
     }
 
     static criarPost(data) {
@@ -83,6 +85,12 @@ class Api {
                 "Authorization": `Bearer ${localStorage.getItem("Token")}`
             },
             body: JSON.stringify(data)
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then((response)=>{
+            console.log(response)
         })
     }
 
@@ -108,7 +116,7 @@ class Api {
 
     static async pagePost (page) {
         const URL = `${this.urlBase}post?page=${page}`
-
+        const userId = localStorage.getItem("Id")
         await fetch(URL, {
             method: "GET",
             headers: {
@@ -118,13 +126,65 @@ class Api {
         .then((response)=>{
             return response.json();
         })
-        .then((reposnse)=>{
-            Posts.DisplayPosts(reposnse)
+        .then((response) => {
+            Posts.DisplayPosts(response, userId)
         })
          .catch((err) => {
              console.log(err)
          })
     }
+
+    static listarPost (id) {
+        const URL = `${this.urlBase}post/${id}`
+
+        fetch(URL, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("Token")}`
+            }
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then((response)=>{
+            EditarPost.editarPost(response)
+        })
+    }
+
+    static editarPost (id, data) {
+        const URL = `${this.urlBase}post/${id}`
+
+        fetch(URL, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("Token")}`
+            },
+            body: JSON.stringify(data)
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then(()=>{
+            Posts.DisplayPosts(1)
+        })
+    }
+
+    static deletePost(postId) {
+        const URL = `${this.urlBase}post/${postId}`
+
+        fetch(URL, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("Token")}`
+            }
+        })
+        .then((response)=>{
+            // console.log(response)
+        })
+        .catch(err => console.log(err))
+    }
+
 }
 
 export default Api

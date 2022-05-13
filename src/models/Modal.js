@@ -5,7 +5,6 @@ class Modal {
     static handlerClick() {
         const loginBtn = document.querySelector('#header__buttons__login')
         const registerBtn = document.querySelector('#header__buttons__register')
-        const register = document.querySelector('.modal__submitBtn')
 
         loginBtn.addEventListener('click', () => {
             Modal.showLoginModal()
@@ -143,6 +142,12 @@ class Modal {
         imgUser.src = usuario.avatarUrl;
         nickUser.innerText = usuario.username;
         logoutButton.innerText = "Logout";
+
+        logoutButton.addEventListener('click', ()=>{
+            document.location.reload(true);
+            localStorage.removeItem('Token');
+            localStorage.removeItem('Id')
+        })
 
         divUser.append(imgUser, nickUser);
         divButton.appendChild(logoutButton);

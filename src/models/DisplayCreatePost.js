@@ -1,7 +1,9 @@
-class DisplayPosts {
+import Api from "../Controller/Api.js";
+
+class DisplayCreatePost {
     static createPost() {
-        const main = document.querySelector('main')
-        const section = document.createElement('section');
+        const section = document.querySelector('.createPost');
+
         const divCreatePost = document.createElement('div');
         const textArea = document.createElement('textarea');
         const submitBtn = document.createElement('button');
@@ -22,16 +24,13 @@ class DisplayPosts {
             const textPost = {
                 content: textArea.value
             }
-            console.log(textPost)
+            Api.criarPost(textPost)
         })
-
-        divCreatePost.appendChild(textArea)
-        section.append(textArea, submitBtn);
-
-        main.appendChild(section)
+        divCreatePost.append(textArea, submitBtn)
+        section.appendChild(divCreatePost);
     }
 }
 
 
 
-export default DisplayPosts
+export default DisplayCreatePost
